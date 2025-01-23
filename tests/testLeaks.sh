@@ -14,7 +14,7 @@
 #gcc -o ../binaries/corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w -lm
 
 #Call test as 
-#./testLeaks.sh | grep -C 4 -E "echo|error|fault"
+#./testLeaks.sh | grep -C 4 -E "echo|error|fault|-----"
 #Or better:
 #./testLeaks.sh | grep -e echo -e error -e fault
 #Note: Some warnigns/errors may appear as the program creates the directories.
@@ -37,7 +37,7 @@ valgrind --log-file="$dirValResOut"XFout01.file --leak-check=full --show-leak-ki
 
 
 #------------------------------ P CRACK KEYS IN PATH --------------------------------
-echo #------------------------------ P CRACK KEYS IN PATH --------------------------------
+echo ------------------------------ P CRACK KEYS IN PATH --------------------------------
 
 valgrind --log-file="$dirValResOut"Pout01.file --leak-check=yes --tool=memcheck "$pathCorsairBin" -p "$dirExamplesPath"challenge_corsair/ -o "$dirValResOut"
 valgrind --log-file="$dirValResOut"PTout01.file --leak-check=yes  --track-origins=yes --tool=memcheck "$pathCorsairBin" -p "$dirExamplesPath"challenge_corsair/ -o "$dirValResOut"valPOut02/
@@ -53,7 +53,7 @@ valgrind --log-file="$dirValResOut"GFout01.file --leak-check=full --show-leak-ki
 
 
 #------------------------------ C GENERATE KEY FROM BIGNUM --------------------------------
-echo #------------------------------ C GENERATE KEY FROM BIGNUM --------------------------------
+echo ------------------------------ C GENERATE KEY FROM BIGNUM --------------------------------
 valgrind --log-file="$dirValResOut"Cout01.file --leak-check=yes --tool=memcheck "$pathCorsairBin" -o "$dirValResOut"valCOut01/ \
  -C 171668005736312320838163729952276949982854994415199773193618288867548827965639919410493652712853022122316617758428088247128886690354536714915038974870406560317128022740325354738145914533499826880951735986746064320374657699657389640017872235510897148538622762812562873470945672684855488701689730647941548075157 \
  140475930401500496299033227376073592513957374789466409611614533193510115385485804618671031646238770587450949615868649317352271163989937507134019778215900891156904323325312273509229976889368765557901489364359229830146882049111224527121650805096088466207983336985717339536941332815164618665653689103167521230319
@@ -72,7 +72,7 @@ valgrind --log-file="$dirValResOut"CFout01.file --leak-check=full --show-leak-ki
 
 
 #------------------------------ E ENCRYPT TEXT --------------------------------
-echo #------------------------------ E ENCRYPT TEXT --------------------------------
+echo ------------------------------ E ENCRYPT TEXT --------------------------------
 
 dirValResOutEncrypt="$dirValResOut""encryptFunc/"
 mkdir -p $dirValResOutEncrypt
@@ -87,7 +87,7 @@ valgrind --log-file="$dirValResOut"EFout01.file --leak-check=full --show-leak-ki
 "$pathCorsairBin" -e "$dirExamplesPath"encryptFunc/publicKey_01.pem "$dirExamplesPath"encryptFunc/encryptText.txt -o "$dirValResOutEncrypt"
 
 #------------------------------ D DECRYPT BIN --------------------------------
-echo #------------------------------ D DECRYPT BIN --------------------------------
+echo ------------------------------ D DECRYPT BIN --------------------------------
 
 dirValResOutDecrypt="$dirValResOut""decryptFunc/"
 mkdir -p $dirValResOutDecrypt
@@ -105,7 +105,7 @@ valgrind --log-file="$dirValResOut"DFout01.file --leak-check=full --show-leak-ki
 
 
 #------------------------------ F CRACK KEYS IN FILES --------------------------------
-echo #------------------------------ F CRACK KEYS IN FILES --------------------------------
+echo ------------------------------ F CRACK KEYS IN FILES --------------------------------
 
 dirValResOut4Files="$dirValResOut""4FilesFunc/"
 mkdir -p $dirValResOut4Files

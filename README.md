@@ -313,11 +313,7 @@ The program can be build with the gcc for two main goals:
 
 ```bash
 # Test the path option:
-
-./corsair -p Sources/challenge_corsair/
-
-./corsair -p Sources/challenge_corsair/
-
+./corsair -p ../examples/challenge_corsair/
 ```
 
 * More test in the bash script "corsairTest.sh"  in the main project folder.
@@ -328,8 +324,8 @@ The program can be build with the gcc for two main goals:
 ```bash
 ./corsair -h
 ./corsair -g 1 -o ./keys/
-./corsair -f ./Sources/challenge_corsair/29.pem ./Sources/challenge_corsair/82.pem ./Sources/challenge_corsair/29.bin ./Sources/challenge_corsair/82.bin -o ./outNow3/
-./corsair -p ./Sources/challenge_corsair/ -o ./OutputPath13/
+./corsair -f ../examples/challenge_corsair/29.pem ../examples/challenge_corsair/82.pem ../examples/challenge_corsair/29.bin ../examples/challenge_corsair/82.bin -o ./outNow3/
+./corsair -p ../examples/challenge_corsair/ -o ./OutputPath13/
 ```
 
 
