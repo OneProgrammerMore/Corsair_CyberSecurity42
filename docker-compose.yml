@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dev-container:
+    build: .
+    command: "sleep infinity"
+    volumes:
+      - ./source:/home/corsair/source
+      - ./binaries:/home/corsair/binaries
+      - ./examples:/home/corsair/examples
+      - ./outputs:/home/corsair/outputs
+      - ./tests:/home/corsair/tests
+      - ./testsResults:/home/corsair/testsResults
+    tty: true

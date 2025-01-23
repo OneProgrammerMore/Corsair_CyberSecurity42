@@ -262,7 +262,7 @@ The program can be build with the gcc for two main goals:
 
 - Compile standard:
 ```bash
-	gcc corsair.c -o corsair -lssl -lcrypto -w
+	gcc corsair.c -o corsair -lm -lssl -lcrypto -w
 ```
 
 

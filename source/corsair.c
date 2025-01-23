@@ -22,13 +22,9 @@
 
 //For OSSL_PARAM
 #include <openssl/core.h>
-
 #include <openssl/engine.h>
-
 #include <openssl/param_build.h>
-
 #include <openssl/ec.h>
-
 #include <openssl/decoder.h>
 #include <openssl/encoder.h>
 
@@ -215,7 +211,6 @@ int SetInputUser(int argc, char *argv[], UserInputCorsair *mainInput){
   mainInput->eFuncBool = 0; //26
   
 
-
   //Define some variables for the function
   int noMoreFlags = 0;
   int newArgumentExpected = 0;
@@ -309,9 +304,6 @@ int SetInputUser(int argc, char *argv[], UserInputCorsair *mainInput){
           printf("USER INPUT ERROR - A new argument was/is expected afer the flag = %c\n", charArgLetter);
           mainInput->wrongUserInputBool = 1;
         }
-
-
-
       } 
 
 	}else{
@@ -459,10 +451,8 @@ int SetInputUser(int argc, char *argv[], UserInputCorsair *mainInput){
           printf("To many arguments for the flag = %c \n",charArgLetter);
           mainInput->wrongUserInputBool = 1;
         }
-
         
         newArgumentExpected = 1;
-
 
       }else{
         printf("The user input in terminal is NOT correct. \n");
@@ -617,7 +607,7 @@ void CheckIntegrityProgramVariables(UserInputCorsair *mainInput){
 
     //if ouput path starts by "." -> relative path
     if(mainInput->outputPath[0] == '.'){
-
+      //FixMe - ToDo - Fix For relative paths starting by ../
       strncat(mainInput->outputPathAbs,mainInput->outputPath+1,sizeof(mainInput->outputPathAbs));
 
     //If output path starts with / absolute path
@@ -641,7 +631,7 @@ void CheckIntegrityProgramVariables(UserInputCorsair *mainInput){
       printf("The selected path %s does not exists. Therefore it will be created.\n",mainInput->outputPathAbs);
       //Crate path
       pathInt = mkdir(mainInput->outputPathAbs, 0777);
-      perror("Error: \n");
+      perror("Warning: \n");
       printf("Dir created: %s\n",mainInput->outputPathAbs);
     }
 
@@ -724,8 +714,6 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 							"172923751757878317830836368950725497132883380724396878066275580794931191723842912404773623085528064250901553127204634599321760969301907103082963480473008801243463955885386338637132668759712213356801082334701471675697220726604018723956601082730671628860910491937158780901151897190660870828044701404669440795171",
 							"175359377227037515790860012821658403973087779487719213087899618931546920418145024887865020850229042419590951602082932134620453290576593162113589309847356921927146879489792852405434936183065055184250987637760430327234133996856094422143972808349807551140336915996630177680994969848269355933215424500270392178389"};
 							
-								
-	//
 	int indexText;
 	int indexBN;
 	int rand_max = 32767;
@@ -735,21 +723,18 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 	int resInt;
 	double newBNBitsLengthDouble;
 	int newBNBitsLengthInt;
-	//int TRUE = 0;
-	
+
 	BIGNUM *staticBN = BN_new();
 	//Maybe Error
 	BIGNUM *newBN = BN_new();
-	//BIGNUM *newBN;
+
 	BN_CTX* auxCTX = BN_CTX_new();
 	BN_GENCB* auxGENCB = BN_GENCB_new();
-	
 	
 	//Undeclared variables from copy save rsa key and save encrypted file:
 	int timeInt;
 	char* pathName[5000], pathOutputPrivateKey[5000], pathOutputPublicKey[5000], textFile[5000];
-	//BIO* bp_private = BIO_new(BIO_s_file());
-	//BIO* bp_public = BIO_new(BIO_s_file());
+
 	BIO* bp_private; 
 	BIO* bp_public;
 	int lengthMaxToEncrypt;
@@ -765,23 +750,14 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 	
 	char* strAuxStaticNumber[5000];
 	
-	
-	
-	//to Check rsa and debug
-	//const BIGNUM *eRSA = BN_new();
-	//const BIGNUM *nRSA = BN_new();
-	//const BIGNUM *dRSA = BN_new();
-	
 	const BIGNUM *eRSA;
 	const BIGNUM *nRSA;
 	const BIGNUM *dRSA;
-	//char eStr[500], nStr[500], dStr[500]; 
 	char *eStr, *nStr, *dStr; 
 	
 	char *textToEncryptPointer;
 	
 	char *iStr[20];
-	
 	
 	srand(time(NULL));
 	
@@ -804,9 +780,6 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 		
 		printf("RAND_MAX = %d     randomNum = %d", RAND_MAX, randomNum);
 		printf("indexText = %d     indexBN = %d", indexText, indexBN);
-		
-		//Get the bits of the static number:
-		//int BN_num_bits(const BIGNUM *a);
 		
 		//Set P -Static NUmber
 		memset(strAuxStaticNumber, '\0', sizeof(strAuxStaticNumber));
@@ -883,7 +856,6 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 		strncpy(pathOutputPrivateKey, mainInput->outputPath, sizeof(mainInput->outputPath));
 		strncat(pathOutputPrivateKey, pathName, sizeof(pathName) );
 		strncat(pathOutputPrivateKey, iStr, sizeof(iStr) );
-		//strncat(pathOutputPrivateKey, "-privateKey.pem", sizeof(pathOutputPrivateKey));
 		strcat(pathOutputPrivateKey, "-privateKey.pem");
 
 		strncpy(pathOutputPublicKey, mainInput->outputPath, sizeof(mainInput->outputPath));
@@ -895,23 +867,15 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 
 		printf("Saving private key into file %s \n", pathOutputPrivateKey);
 		bp_private = BIO_new_file(pathOutputPrivateKey, "w+");
-		//int PEM_write_bio_RSAPrivateKey(BIO *bp, RSA *x, const EVP_CIPHER *enc,
-                                //unsigned char *kstr, int klen,
-                                //pem_password_cb *cb, void *u);
+
 		ret = PEM_write_bio_RSAPrivateKey(bp_private, rsaKey, NULL, NULL, 0, NULL, NULL);
-		//possible seg fault:
-		//BIO_free(bp_private);
 		
 		
 		printf("Saving public key in file %s \n", pathOutputPublicKey);
 		bp_public = BIO_new_file(pathOutputPublicKey, "w+");
-		//ret = PEM_write_bio_RSAPublicKey(bp_public, rsaKey);
-		//PEM_write_bio_RSA_PUBKEY(BIO *bp, RSA *x);
+
 		ret = PEM_write_bio_RSA_PUBKEY(bp_public, rsaKey);
-		//Encrypt text and save in file.bin
-		//Possible sig fault:
-		//BIO_free(bp_public);
-		
+
 		if(rsaKey != NULL){
 			//Dencrypt
 			//Get n from rsa key in order to check that exists:
@@ -938,8 +902,7 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 				//Error handling:
 				ERR_print_errors_fp(stderr);
 				//Cleanup and exit
-				
-				
+			
 			}else if(sizeOneEncrypted != lengthMaxToEncrypt) {
 				printf("ERROR - sizeOneEncrypted != lengthMaxToEncrypt");
 				printf("ERROR - sizeOneEncrypted = %d\n\n", sizeOneEncrypted);
@@ -957,9 +920,7 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 				strncat(binFileNameAndPath, mainInput->outputPath, strlen(mainInput->outputPath));
 				strncat(binFileNameAndPath, binFileName, strlen(binFileName));
 
-				
 				fileOneBin = fopen(binFileNameAndPath, "wb");
-				//fileOneBin = fopen(binFileNameAndPath, "w+");
 				if(fileOneBin == NULL){
 					printf("ERROR - EncryptASCIIFile - fileOneBin is NULL!");
 					
@@ -969,7 +930,6 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 				}
 			}
 			free(toOne);
-			//free(textToEncryptPointer);
 		}
 		
 		BIO_free_all(bp_public);
@@ -978,22 +938,14 @@ void CreateNCrackableRSAKeys(UserInputCorsair *mainInput){
 		OPENSSL_free(eStr);
 		OPENSSL_free(nStr);
 		OPENSSL_free(dStr);
-		//OPENSSL_free(auxStr);
 		
 		RSA_free(rsaKey);
-		//BN_free(newBN);
 	}
 	BN_CTX_free(auxCTX);
 	BN_GENCB_free(auxGENCB);
 	
-	
-	//Possible seg fault 
 	BN_free(staticBN);
 	BN_free(newBN);
-	//BIO_free(bp_public);
-	//BIO_free(bp_private);
-	//BIO_free_all(bp_public);
-	//BIO_free_all(bp_private);
 	return;	
 }
 
@@ -1028,26 +980,15 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
   
   BIGNUM* zeroBN = BN_new(); //Bignum for value 0
   BIGNUM* oneBN = BN_new(); // Bignum for value 1
-  
-  //RSA *rsaKey = RSA_new();
 
   resInt = BN_dec2bn(&zeroBN, "0");
   resInt = BN_dec2bn(&oneBN, "1");
   resInt = BN_dec2bn(&kBN, "2");
   
-  //Define p and q from user input
-  //BN_dec2bn(&pBN, mainInput->BN_One_cFunc);
-  //BN_dec2bn(&qBN, mainInput->BN_Two_cFunc);
-
-  
   char pathOutputPublicKey[3000];
   char pathOutputPrivateKey[3000];
   char pathName[200];
   int ret;
-
-  //BIGNUM *eRSA = BN_new();
-  //BIGNUM *nRSA = BN_new();
-  //BIGNUM *dRSA = BN_new();
   
   const BIGNUM *eRSA;
   const BIGNUM *nRSA;
@@ -1067,8 +1008,6 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
   isPrimeQ = BN_is_prime_ex(qBN, 128, CTXAux, NULL);
   //myError =  ERR_get_error();
   //printf("MyError =  %d", myError);
-  //isPrimeP = BN_check_prime(pBN);
-  //isPrimeQ = BN_check_prime(qBN);
   //https://man.openbsd.org/BN_cmp.3
  
   comparedPQ = BN_cmp(pBN, qBN);
@@ -1079,10 +1018,9 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
     printf("\nThe conditions are NOT satisfied. isPrimeP = %i , isPrimeQ = %i , comparedPQ = %i\n", isPrimeP, isPrimeQ, comparedPQ);
     
     auxStr = BN_bn2dec(pBN);
-	printf("P = %s \n", auxStr);
-	auxStr = BN_bn2dec(qBN);
-	printf("Q = %s \n", auxStr);
-
+	  printf("P = %s \n", auxStr);
+	  auxStr = BN_bn2dec(qBN);
+	  printf("Q = %s \n", auxStr);
     return;
   }
   
@@ -1094,7 +1032,6 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
   resInt = BN_sub(numPMinusBN, pBN, oneBN);
   resInt = BN_sub(numQMinusBN, qBN, oneBN);
   resInt = BN_mul(phiBN, numPMinusBN, numQMinusBN, CTXAux);
-
 
   resInt = BN_dec2bn(&eBN, "2");
   // Returns -1 if A (multTotientBG) is smaller than B
@@ -1128,8 +1065,6 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
 
   resInt = BN_mod_inverse(dBN, eBN, phiBN, CTXAux);
 
-
-
   //6. Public key is n/N and e, and it is used to encrypt
   // N --> multTotientBG
   // e --> eBN
@@ -1150,7 +1085,6 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
   printf("d = %s \n", auxStr);
   OPENSSL_free(auxStr);
 
- 
   //Create a private key and a public key pem files:
   //int RSA_set0_key(RSA *r, BIGNUM *n, BIGNUM *e, BIGNUM *d);
   ret = RSA_set0_key(*rsaKey, BN_dup(nBN), BN_dup(eBN), BN_dup(dBN));
@@ -1186,7 +1120,6 @@ void CreateKeyFrom2BNsAndReturnRSA(BIGNUM *qBN, BIGNUM *pBN, RSA **rsaKey){
   if(ret != 1){
 	printf("\n\n Error while setting CRT parameters to rsaKey.\n\n");
   }
-  
   
 	//Get n from rsa key in order to check that exists:
 	//TO DEBUG INFO
@@ -1283,10 +1216,6 @@ void CreateKeyFrom2BNs(UserInputCorsair *mainInput){
   char pathName[200];
   int ret;
 
-  //BIGNUM *eRSA = BN_new();
-  //BIGNUM *nRSA = BN_new();
-  //BIGNUM *dRSA = BN_new();
-  
   BIGNUM *eRSA;
   BIGNUM *nRSA;
   BIGNUM *dRSA;
@@ -1317,7 +1246,6 @@ void CreateKeyFrom2BNs(UserInputCorsair *mainInput){
     return;
   }
   
-
   //2. Calculate N = p * q
   resInt = BN_mul(nBN, pBN, qBN, CTXAux);
   
@@ -1359,8 +1287,6 @@ void CreateKeyFrom2BNs(UserInputCorsair *mainInput){
   //BIGNUM *BN_mod_inverse(BIGNUM *r, BIGNUM *a, const BIGNUM *n, BN_CTX *ctx);
 
   resInt = BN_mod_inverse(dBN, eBN, phiBN, CTXAux);
-
-
 
   //6. Public key is n/N and e, and it is used to encrypt
   // N --> multTotientBG
@@ -1412,7 +1338,6 @@ void CreateKeyFrom2BNs(UserInputCorsair *mainInput){
   if(ret != 1){
 	printf("\n\n Error while setting CRT parameters to rsaCreated.\n\n");
   }
-
 
   //Save private and public RSA Keys with timestamp
   timeInt = (int)time(NULL);
@@ -1475,8 +1400,6 @@ void CreateKeyFrom2BNs(UserInputCorsair *mainInput){
 
 void getNandEFromFile(const BIGNUM **resN, const BIGNUM **resE, char* inputFile){
   //Function in order to return N a E from a PEM file with a RSA public KEy
-  
-  
   RSA *rsa = RSA_new();
   BIO *keybio = BIO_new(BIO_s_file());
 
@@ -1536,12 +1459,6 @@ void CrackPrivateKeyFromPublicKeysFinal(UserInputCorsair  *mainInput){
 
   int lenOne, lenTwo, gcdBothInt, gcdCmpInt, unityInt, divOneInt, divTwoInt, obtainDOneInt, obtainDTwoInt, lenOneBin, lenTwoBin;
 
-  /*
-  const BIGNUM* nOne = BN_new();
-  const BIGNUM* eOne = BN_new();
-  const BIGNUM* nTwo = BN_new();
-  const BIGNUM* eTwo = BN_new();
-  */
   const BIGNUM* nOne = NULL;
   const BIGNUM* eOne = NULL;
   const BIGNUM* nTwo = NULL;
@@ -1576,26 +1493,15 @@ void CrackPrivateKeyFromPublicKeysFinal(UserInputCorsair  *mainInput){
   unsigned char *secretBufferOneBin;
   unsigned char *secretBufferTwoBin;
 
-  //BIGNUM* gcdBoth = BN_new();
-  /*
-  BIGNUM* gcdBN = BN_new();
-  BIGNUM* pBoth = BN_new();
-  BIGNUM* pMinusBoth = BN_new();
-  */
   // COULD Break here  FIXME
   BIGNUM* gcdBN = BN_new();
   //BIGNUM* gcdBN;
   BIGNUM* pBoth;
   BIGNUM* pMinusBoth = BN_new();;
 
-
   BIGNUM* unityBN = BN_new();
-  //Seg fault below
-  //BIGNUM* unityBN;
-
 
   BN_CTX* CTXAux = BN_CTX_new();
-
 
   BIGNUM* qOne = BN_new();
   BIGNUM* qTwo = BN_new();
@@ -1613,17 +1519,12 @@ void CrackPrivateKeyFromPublicKeysFinal(UserInputCorsair  *mainInput){
   BIGNUM* TotientOne = BN_new();
   BIGNUM* TotientTwo = BN_new();
 
-
-
   BIGNUM* dValueOne = BN_new();
   BIGNUM* dValueTwo = BN_new();
 
   int nOneSize, eOneSize, dOneSize, nTwoSize, eTwoSize, dTwoSize;
 
   int myErrorDec, errorAuxInt;
-
-
-
 
   int validationKeyOne = NULL;
   int validationKeyTwo = NULL;
@@ -1645,8 +1546,6 @@ void CrackPrivateKeyFromPublicKeysFinal(UserInputCorsair  *mainInput){
   const BIGNUM *eRSA = BN_new();
   const BIGNUM *nRSA = BN_new();
   const BIGNUM *dRSA = BN_new();
-
-  //const RSA *rsa_key = RSA_new_method(NULL);
 
   char *eStr, *nStr, *dStr;
 
@@ -1686,13 +1585,11 @@ void CrackPrivateKeyFromPublicKeysFinal(UserInputCorsair  *mainInput){
 
 
   //search for all files with PEM extension at the end:
-
   //Open dir:
   dOne = opendir(mainInput->pPath);
 
   //If the object DIR d is not NULL
   if(dOne){
-
 
     //While there is a new file or a new folder:
     while( (dirOne = readdir(dOne)) != NULL){

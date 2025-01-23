@@ -1,4 +1,6 @@
-# Table of contents
+# 🔓 Corsair
+
+## 📃 Table of contents
 
 1. [Corsair](#corsair)  
 	1. [Introducción](#introduction)  
@@ -28,18 +30,18 @@
 7. [To Do](#toDo)
 
 
-# Corsair <a name="corsair"/>
+## 🔓 Corsair <a name="corsair"/>
 
 Resumen: Bloque de criptografía
 
-## Introducción <a name="introduction"/>
+### 📜 Introducción <a name="introduction"/>
 
 Este proyecto introduce conceptos específicos sobre la fortaleza del algoritmo RSA y
 sus vulnerabilidades potenciales. Si bien el algoritmo es considerado suficientemente fuerte
 para la potencia computacional de los dispositivos actuales, ciertas formas de utilizarlo
 pueden llevar a graves problemas de seguridad.
 
-## Instrucciones generales <a name="instruccionesGenerales"/>
+### 📖 Instrucciones generales <a name="instruccionesGenerales"/>
 
 Para este proyecto, debes usar C como lenguaje. La lista de funciones pemitidas es la
 siguiente:
@@ -49,7 +51,7 @@ siguiente:
 • Todo lo puesto en cabecera del ejercicio.
 
 
-## Parte Obligatoria <a name="parteObligatoria"/>
+### Parte Obligatoria <a name="parteObligatoria"/>
 
 La seguridad en la criptografía asimétrica usando claves RSA se basa en la premisa de
 que es muy difícil computacionalmente factorizar los dos factores primos de un número.
@@ -79,7 +81,7 @@ se podría haber dado el caso en el que dos módulos compartan el mismo número 
 [n1 = p1 · q1] [n2 = p1 · q2]
 
 
-## Ejercicio 1 - coRSAir 
+#### Ejercicio 1 - coRSAir 
 
 | |  |
 | ----------- | ----------- |
@@ -100,7 +102,7 @@ clave simétrica cifrada con él.
 
 • ¡Descifre el mensaje!
 
-## Parte Bonus <a name="parteBonus"/>
+### Parte Bonus <a name="parteBonus"/>
 
 La evaluación de los bonus se hará SI Y SOLO SI la parte obligatoria es PERFECTA.
 De lo contrario, los bonus serán totalmente IGNORADOS.
@@ -119,9 +121,9 @@ con enteros de gran tamaño.
 
 
 
-# My Corsair <a name="myCorsair"/>
+## 🔐 My Corsair <a name="myCorsair"/>
 
-## Corsair Help  <a name="corsairHelp"/>
+### ❓ Corsair Help  <a name="corsairHelp"/>
 
 
 ```bash
@@ -235,7 +237,7 @@ corsair is a program used to crack RSA passwords and work with RSA keys.
 ```
 
 
-## Files <a name="files"/>
+###  📁 Files <a name="files"/>
 - The list of files used for the project is the following:
 
 | FILE | Function |
@@ -252,13 +254,13 @@ corsair is a program used to crack RSA passwords and work with RSA keys.
 
 
 
-## Build <a name="build"/>
+### 👷 Build <a name="build"/>
   
 The program can be build with the gcc for two main goals:
 - Distribution: Use the program normally.
 - Debugging: Test, debug and improve the code.
 
-### Compile for distribution
+#### Compile for distribution
 
 - Compile standard:
 ```bash
@@ -266,7 +268,7 @@ The program can be build with the gcc for two main goals:
 ```
 
 
-### Compile for Debugging
+#### Compile for Debugging
 - Compile Debugging:
 ```bash
 	gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
@@ -275,7 +277,7 @@ The program can be build with the gcc for two main goals:
 
 
 
-## Leaks <a name="leaks"/>
+### 💧 Leaks <a name="leaks"/>
 
 1. Compile the program with -dgb flag
 ```bash
@@ -294,7 +296,7 @@ The program can be build with the gcc for two main goals:
 
 
 
-## Tests <a name="tests"/>
+### 🎯  Tests <a name="tests"/>
 
 ```bash
 # Test the path option:
@@ -308,7 +310,7 @@ The program can be build with the gcc for two main goals:
 * More test in the bash script "corsairTest.sh"  in the main project folder.
 
 
-## Use Examples <a name="useExamples"/>
+### 🔨 Use Examples <a name="useExamples"/>
 
 ```bash
 ./corsair -h
@@ -318,9 +320,9 @@ The program can be build with the gcc for two main goals:
 ```
 
 
-# Software <a name="software"/>
+## 🔧 Software <a name="software"/>
 
-## GCC - GNU Compiler Collection  <a name="gcc"/>
+### GCC - GNU Compiler Collection  <a name="gcc"/>
 
 [GCC Official Website](https://gcc.gnu.org/)
 
@@ -331,7 +333,7 @@ apt install gcc
 
 ```
  
-## GDB <a name="gdb"/>
+### GDB <a name="gdb"/>
 
 [GDB Official Website](https://www.sourceware.org/gdb/)
 
@@ -341,7 +343,7 @@ apt install gcc
 apt isntall gdb
 ```
 
-## OpenSSL <a name="openSSL"/> 
+### OpenSSL <a name="openSSL"/> 
 
 [OpenSSL Official Website](https://www.openssl.org/)
 
@@ -381,7 +383,7 @@ apt install libssl-dev  openssl
 
 
 
-## Valgrind <a name="valgrind"/> 
+### Valgrind <a name="valgrind"/> 
  
  [Valgrind Official Website](https://valgrind.org/)
  
@@ -395,11 +397,11 @@ apt install valgrind
 
 
 	
-# Useful Commands <a name="usefulCommands"/>
+## 👇 Useful Commands <a name="usefulCommands"/>
 
-## GCC Commands <a name="gccCommands"/>
+### GCC Commands <a name="gccCommands"/>
 
-## GDB Commands <a name="gdbCommands"/>
+### GDB Commands <a name="gdbCommands"/>
 
 - In order to debug the C program Corsair:
 
@@ -418,7 +420,7 @@ apt install valgrind
 	where
 ```
 
-## OpenSSL Commands <a name="openSSLCommands"/>
+### OpenSSL Commands <a name="openSSLCommands"/>
 
 
 ```bash
@@ -440,7 +442,7 @@ cat $(openssl pkeyutl -decrypt -inkey 1699361826-privateKey.pem -in 1699361826-p
 
 
 
-## Valgrind Commands <a name="valgrindCommands"/>
+### Valgrind Commands <a name="valgrindCommands"/>
 
 - In order to correct corsair:
 	#Source: 
@@ -503,11 +505,11 @@ cat $(openssl pkeyutl -decrypt -inkey 1699361826-privateKey.pem -in 1699361826-p
 ```
 
 
-# Theory <a name="theory"/>
+## Theory <a name="theory"/>
 
 
 
-# Sources <a name="sources"/>
+## Sources <a name="sources"/>
 
 https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_set1_RSA.html
 https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_fromdata.html
@@ -551,9 +553,9 @@ https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_set1_RSA.html
 https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_fromdata.html
 https://stackoverflow.com/questions/5134891/how-do-i-use-valgrind-to-find-memory-leaks
 
-# Notes <a name="notes"/>
+## 📑 Notes <a name="notes"/>
 
- ## NotesCorsair.txt To Merge or Delete
+### NotesCorsair.txt To Merge or Delete
 ```
 
 
@@ -625,7 +627,7 @@ In order to chek for memory leaks use valgrind:
 ```
 
 
-# To Do <a name="toDo"/>
+## 📋 To Do <a name="toDo"/>
 
 
 - Backup Program and Files
