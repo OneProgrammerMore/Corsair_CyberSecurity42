@@ -11,4 +11,4 @@ services:
       - ./outputs:/home/corsair/outputs
       - ./tests:/home/corsair/tests
       - ./testsResults:/home/corsair/testsResults
-    tty: true
+    user: "${UID}:${GID}"

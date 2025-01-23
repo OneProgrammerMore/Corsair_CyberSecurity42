@@ -1,10 +1,12 @@
 # 🔓 Corsair
 
+RSA low randomness key cracker.
+
 ## 📃 Table of contents
 
 1. [Corsair](#corsair)  
 	1. [Introducción](#introduction)  
-	1. [Isntrucciones Generales](#instruccionesGenerales)  
+	1. [Instrucciones Generales](#instruccionesGenerales)  
 	2. [Parte Obligatoria](#parteObligatoria)  
 	3. [Parte Bonus](#parteBonus)  
 2. [My Corsair](#myCorsair)  
@@ -51,7 +53,7 @@ siguiente:
 • Todo lo puesto en cabecera del ejercicio.
 
 
-### Parte Obligatoria <a name="parteObligatoria"/>
+### ❗ Parte Obligatoria <a name="parteObligatoria"/>
 
 La seguridad en la criptografía asimétrica usando claves RSA se basa en la premisa de
 que es muy difícil computacionalmente factorizar los dos factores primos de un número.
@@ -102,7 +104,7 @@ clave simétrica cifrada con él.
 
 • ¡Descifre el mensaje!
 
-### Parte Bonus <a name="parteBonus"/>
+### ➕ Parte Bonus <a name="parteBonus"/>
 
 La evaluación de los bonus se hará SI Y SOLO SI la parte obligatoria es PERFECTA.
 De lo contrario, los bonus serán totalmente IGNORADOS.
@@ -122,6 +124,9 @@ con enteros de gran tamaño.
 
 
 ## 🔐 My Corsair <a name="myCorsair"/>
+
+- Features:
+- 
 
 ### ❓ Corsair Help  <a name="corsairHelp"/>
 
@@ -265,6 +270,9 @@ The program can be build with the gcc for two main goals:
 - Compile standard:
 ```bash
 	gcc corsair.c -o corsair -lm -lssl -lcrypto -w
+	OR
+	gcc corsair.c -o ../binaries/corsair -lm -lssl -lcrypto -w
+	
 ```
 
 
@@ -273,6 +281,11 @@ The program can be build with the gcc for two main goals:
 ```bash
 	gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
 	gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w -lm
+	
+	#OR
+	
+	gcc -o ../binaries/corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
+	gcc -o ../binaries/corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w -lm
 ```	
 
 
@@ -293,7 +306,7 @@ The program can be build with the gcc for two main goals:
 	valgrind --log-file="$dirValRes"Xout01.file --leak-check=yes --tool=memcheck ./corsair -x  4 -o "$dirValResOut"valXOut01/
 ```
 
-
+[!] - Some leak tests are in the file: ./tests/testsLeaks.sh
 
 
 ### 🎯  Tests <a name="tests"/>
@@ -391,7 +404,6 @@ apt install libssl-dev  openssl
 
 ```bash
 apt install valgrind
-
 ```
 
 
@@ -463,9 +475,6 @@ cat $(openssl pkeyutl -decrypt -inkey 1699361826-privateKey.pem -in 1699361826-p
 		valgrind --log-file=output41.file --leak-check=full --track-origins=yes --tool=memcheck ./corsair -p ./Sources/challenge_corsair/ -o ./OutputPath13/
 ```
 
-	
-
-
 		
 - ERROR MESSSAGE VALGRIND EXAMPLE
 ```bash 
@@ -505,126 +514,20 @@ cat $(openssl pkeyutl -decrypt -inkey 1699361826-privateKey.pem -in 1699361826-p
 ```
 
 
-## Theory <a name="theory"/>
+## 📌 Theory <a name="theory"/>
+*In some future version... RSA theroy will be here...*
 
 
+## 📚 Sources <a name="sources"/>
 
-## Sources <a name="sources"/>
-
-https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_set1_RSA.html
-https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_fromdata.html
-https://en.wikipedia.org/wiki/RSA_(cryptosystem)
-https://www.youtube.com/watch?v=j2NBya6ADSY
-https://www.geeksforgeeks.org/rsa-algorithm-cryptography/
-https://security.stackexchange.com/questions/115862/what-is-the-format-of-an-rsa-public-key
-https://stackoverflow.com/questions/12749858/rsa-public-key-format
-https://www.cryptosys.net/pki/rsakeyformats.html
-
-
-- Public Keys Examples:
-https://phpseclib.com/docs/rsa-keys
-
--C programming:
-https://metacpan.org/pod/Crypt::OpenSSL::RSA
-https://man.openbsd.org/RSA_new.3
-https://stackoverflow.com/questions/71691984/openssl-read-certificate-pem-to-get-the-public-key-in-rsa-format-in-c-lang
-https://www.openssl.org/docs/man1.1.1/man3/PEM_read_X509.html
-https://stackoverflow.com/questions/8332494/undefined-reference-to-openssl-functions-when-compiling-with-gcc-in-ubuntu-11-10
-https://www.openssl.org/docs/man3.0/man3/X509_get_pubkey.html
-https://cpp.hotexamples.com/examples/-/-/X509_get_pubkey/cpp-x509_get_pubkey-function-examples.html
-https://www.cryptologie.net/article/260/asn1-vs-der-vs-pem-vs-x509-vs-pkcs7-vs/
-https://stackoverflow.com/questions/31295320/pem-read-x509-exits-with-code-0
-https://cryptography.io/en/latest/x509/reference/
-https://fm4dd.com/openssl/sslconnect.shtm
-https://stackoverflow.com/questions/30225782/how-to-read-a-public-key-from-a-pem-file-using-bio-from-openssl
-https://megamorf.gitlab.io/cheat-sheets/openssl/
-https://stackoverflow.com/questions/25528417/extract-public-key-from-evp-pkey-keypair
-https://crypto.stackexchange.com/questions/18031/how-to-find-modulus-from-a-rsa-public-ke
-https://www.openssl.org/docs/man3.0/man7/EVP_PKEY-RSA.html
-https://www.openssl.org/docs/man3.0/man3/RSA_get0_n.html
-https://www.openssl.org/docs/man3.0/man3/BN_bin2bn.html
-https://8gwifi.org/PemParserFunctions.jsp
-
-https://www.openssl.org/docs/man3.0/man7/RSA.html
-
-https://stackoverflow.com/questions/40549318/error-invalid-use-of-incomplete-type-rsa-aka-struct-rsa-st-in-openssl-1-1
-
-https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_set1_RSA.html
-https://www.openssl.org/docs/man3.0/man3/EVP_PKEY_fromdata.html
-https://stackoverflow.com/questions/5134891/how-do-i-use-valgrind-to-find-memory-leaks
+- [OpenSSL 3.0 Official Documentation](https://docs.openssl.org/3.0/man3/)
+- [GCC Official Documentation](https://gcc.gnu.org/onlinedocs/)
+- [GDB Official Documentation](https://www.sourceware.org/gdb/documentation/)
+- [Valgrind Official Documentation](https://valgrind.org/docs/)
+- [RFC 8017 - RSA Cryptography Specifications Version](https://datatracker.ietf.org/doc/html/rfc8017)
 
 ## 📑 Notes <a name="notes"/>
 
-### NotesCorsair.txt To Merge or Delete
-```
-
-
-In order to chek for memory leaks use valgrind:
-- Source: https://www.cyberciti.biz/faq/valgrind-check-for-memory-leaks-in-c-programs/
-	
-	- Install valgrind
-		apt install valgrind
-	
-	If program is called like this:
-		./a.out arg1 arg2
-		/path/to/myapp arg1 arg2
-		
-	Call it like this:
-		valgrind --leak-check=yes ./a.out arg1 arg2
-		valgrind --leak-check=yes /path/to/myapp arg1 arg2
-	
-	In order to set log file:
-		valgrind --log-file=output.file --leak-check=yes --tool=memcheck ./a.out arg1 arg2
-		
-	
-	- To compile:
-		
-		gcc corsair.c -o corsair -lssl -lcrypto -w
-		
-		OR for debugging:
-		
-		gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c 
-		gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
-	
-	
-		
-************ ALTERNATIVE METHOD TO SEE LEAKS **************************************
-
-	1. Use valgrind
-		valgrind --vgdb=yes --vgdb-error=0 <program> <arguments>
-		
-		EXAMPLES TEST:
-			valgrind --vgdb=yes --vgdb-error=0 ./corsair -h
-			valgrind --vgdb=yes --vgdb-error=0  ./corsair -g 10 -o ./keys/
-			valgrind --vgdb=yes --vgdb-error=0 ./corsair -f ./Sources/challenge_corsair/29.pem ./Sources/challenge_corsair/82.pem ./Sources/challenge_corsair/29.bin ./Sources/challenge_corsair/82.bin -o ./outNow3/
-			valgrind --vgdb=yes --vgdb-error=0 ./corsair -p ./Sources/challenge_corsair/ -o ./OutputPath13/
-			valgrind --vgdb=yes --vgdb-error=0 ./corsair -x 3 -o ./valOutX/
-		
-	2. Check output
-	
-	[IN OTHER TERMINAL WHILE VALGRIND RUNS]
-	3. Start program with gdb
-		gdb <program>
-		
-	4. Ensure that GDB isn’t using non-stop mode (Valgrind doesn’t like that) 
-		gdb> set non-stop off
-		
-	5. Connect the GDB remote functionality to the Valgrind gdb-server. you could copy the exact command from the valgrind output, but it usually is sufficient wi
-		gdb> target remote | vgdb
-		
-	6. 
-		gdb> monitor leak_check
-		
-		OR
-		
-		gdb> monitor who_points_at
-		
-
-	
-
-************************ ERROR MESSSAGE VALGRIND EXAMPLE END ********************************************
-`
-```
 
 
 ## 📋 To Do <a name="toDo"/>
@@ -636,89 +539,4 @@ In order to chek for memory leaks use valgrind:
 - Names Variables Program Improve
 
 
-
-
--------------- CORSAIR THEORY/BLOG LIST ------------------------
-
-- C Programming Language Syntax and Examples
-	- Standards
-	- Sources
-	- Variables types
-	- Structures
-	- Loops
-	- Conditionals (if and switch)
-	- Operations
-	- Bitwise Operations
-	- Mathematic operations
-	- Function
-	- Pointers
-	- Str Functions
-	- Buffer Functions
-	- File Functions (FILE Struct)
-	- Directory Functions (DIR Struct)
-	- Substitutions
-	- Main Libraries
-		- math
-		- stdin
-		- (all used for corsair)
-- GCC Compiler
-- GDB Debugger
-- Valgrind
-- Encryption Basics
-- Simmetrical VS Assimetrical Encryption
-- RSA Theory Basics
-- RSA Crack Keys Method Derived by Poor Randomness
-- RSA Crack Keys Brute Force
-- OpenSSL Library Basics
-	- Main versions 1, 3 and 3.1
-- OpenSSL Commands Basics	
-- PEM Certificates Syntax
-- Corsair Program:
-	- Subject
-	- Bash Program Test
-	- Bash Program Leak Test
-	- Code Clean and commented
-	- ToDO Version 0.002
-		- Use last library version (3 or 3.1)
-	- Mistakes Made List Curious
-		- Input function and changing values from input pointer
-		- sizeof a char array passed as an input to a function - NOT possible
-		- RSA Struct freeing after necessary and creation prior needed because other values of the struct that update themself
-		- unsigned char vs char
-- Geany Software 
-- Bash Scrpit basics
-- /bin/sh vs /bin/bash Syntax Basics
-	- Variables
-	- String Concatenation
-	- Loops
-	- Conditionals
-- Bourne-Again Shell vs Shell vs Korn Shell vs C Shell - Basics
-
-
-
-------------------------- ToAdd If needed: ----------------------------------
-
-- Encryption Theory Basics
-- Simmetrical and Asimmetrical Encryption
-- RSA Encryption Theory
-- RSA Uses in the real world and the Internet (https protocol, signing software, source trust corroboration) 
-- RSA Encryption and Decryption Methodes and Algorithms
-- RSA Cracking Methode Theory - Corsair
-- RSA Brute Force Theory, Methode and Examples
-- Fernet Theory Basics
-- AES - Advanced Encryption Standard - Theory Basics (AES 128, AES 256, AES 512)
-- OpenSSL Library
-	- OpenSSL Sources - Manuals, Source Code, Bugs List, Main Versions
-	- OpenSSL Main Commands - Decrypt, Encrypt, Generate Keys (RSA - AES - Fernet)
-	- BigNum Theory
-	- .pem Public and Private Key Certificate
-	- Used Functions OpenSSL
-		- Store Public Key
-		- Store Private Key
-		- Create Private Key
-		- Algorithm with BigNums to create a Private and Public Keys
-		- Create Prime Big Number
-		- Random, Pseudo Random and NOT Random
-		- Randomness Engine/Method/Theory
-- Randomness Theory Basics - Not Random, Pseudo Random, True Random
 
