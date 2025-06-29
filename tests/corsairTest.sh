@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
 #Call test as 
 #./corsairTest.sh | grep -C 4 -E "echo|error|fault"

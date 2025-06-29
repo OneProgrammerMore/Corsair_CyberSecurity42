@@ -6,7 +6,12 @@ RUN apt-get update && apt-get install -y \
     make \
     openssl libssl-dev \
     gdb \
-    valgrind
+    valgrind \
+    clang-format \
+    astyle \
+    cppcheck \
+    flawfinder \
+    splint
 
 # Create user and home directory
 #RUN useradd -m -s /bin/bash corsair

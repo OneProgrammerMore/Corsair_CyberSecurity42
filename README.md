@@ -125,8 +125,9 @@ con enteros de gran tamaño.
 
 ## 🔐 My Corsair <a name="myCorsair"/>
 
-- Features:
-- 
+I followed the obligatory instructions of the 42 Cybersecurity Bootcamp and added several features due to personal choices to learn about RSA.
+The features can be seen in the help of the program.
+
 
 ### ❓ Corsair Help  <a name="corsairHelp"/>
 
@@ -212,33 +213,6 @@ corsair is a program used to crack RSA passwords and work with RSA keys.
   -e (public_key_file.pem input_text_file.txt)   --> if the length of the text of the input_text_file is lower or equal than the maximum encryption lenght,
 										this function encrypts the text and save it into the file given with the -o flag. 
 
-
-
-  ToDo for Version 0.002
-  - Input Read Arguments Function With Parameters stored into Struct and check consistency of gieven parameters
-  - Help Print Function
-  - Create Output Folder if needed
-  - -p Function
-    - Clean
-    - Create .pem files and save into output with name public key files
-    - Create .txt files and save into output path with decrypted message
-    - Free all variables
-  - -f Function
-    - SAME as -p but for 4 files
-  - -C function
-  - -x function using the same function as -C
-  - .g function using the same function as -C
-  - -d function 
-
-
-
-  ToDo for Version 0.002
-  - H (HASH)   --> Specifies the HASH to be used for all functions 
-  - F (file.pem) --> Cracks the public key stored into file.pem 
-  - Clean Code
-  - Assure all Variables are freedn
-  - All functions with 'no deprecated' open ssl functions
-
 ```
 
 
@@ -279,12 +253,10 @@ The program can be build with the gcc for two main goals:
 #### Compile for Debugging
 - Compile Debugging:
 ```bash
-	gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
 	gcc -o corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w -lm
 	
-	#OR
+	# OR
 	
-	gcc -o ../binaries/corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w
 	gcc -o ../binaries/corsair -std=c11 -Wall -ggdb3 corsair.c -lssl -lcrypto -w -lm
 ```	
 
@@ -508,6 +480,71 @@ cat $(openssl pkeyutl -decrypt -inkey 1699361826-privateKey.pem -in 1699361826-p
 ==43284== For counts of detected and suppressed errors, rerun with: -v
 ==43284== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 4 from 4)
 ```
+
+## Other programming tools
+```sh
+apt install -y clang-format astyle cppcheck flawfinder splint
+```
+
+
+### Formatting C Code
+- **Clang-Format**
+```bash
+clang-format -i your_file.c
+```
+```.clang-format
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: ForIndentation     # Use tabs only for indentation, not alignment
+BreakBeforeBraces: All     # Braces go on a new line
+AllowShortIfStatementsOnASingleLine: false
+ColumnLimit: 100
+SpacesInParentheses: false
+SpaceAfterCStyleCast: true
+AlwaysBreakAfterReturnType: None
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+SortIncludes: true
+IncludeBlocks: Preserve
+IndentCaseLabels: true
+```
+
+- **Astyle**
+```bash
+astyle --style=google your_file.c
+```
+
+### Static Analysis Tools (Security & Bug Checking)
+
+- **CPPCheck** - Detects memory leaks, null pointer dereference, uninitialized variables, etc.
+```bash
+cppcheck --enable=all --inconclusive --std=c99 your_file.c
+```
+
+- **Flawfinder** - Focused on security vulnerabilities in C/C++.
+```bash
+flawfinder your_file.c
+```
+
+- **Splint** - Checks for type errors, memory leaks, and spec violations.
+```bash
+splint your_file.c
+```
+
+### Sanitizers (At runtime)
+Used for dynamic checks during execution.
+
+- **AddressSanitzed / UndefinedBehaviourSanitizer
+```bash
+clang -fsanitize=address,undefined -g your_file.c -o your_program
+```
+
+
+
+
+
+
 
 
 ## 📌 Theory <a name="theory"/>

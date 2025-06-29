@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   dev-container:
+    container_name: corsair
     build: .
     command: "sleep infinity"
     volumes:
@@ -11,4 +12,6 @@ services:
       - ./outputs:/home/corsair/outputs
       - ./tests:/home/corsair/tests
       - ./testsResults:/home/corsair/testsResults
+      - ./Makefile:/home/corsair/Makefile
+      - ./.clang-format:/home/corsair/.clang-format
     user: "${UID}:${GID}"
