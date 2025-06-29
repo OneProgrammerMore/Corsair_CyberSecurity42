@@ -1,6 +1,6 @@
 # .clang-format
 BasedOnStyle: LLVM
-IndentWidth: 8
+IndentWidth: 12
 UseTab: Always
 BreakBeforeBraces: Linux
 AllowShortIfStatementsOnASingleLine: false
