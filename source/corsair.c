@@ -232,6 +232,7 @@ int SetInputUser(int argc, char *argv[], UserInputCorsair *mainInput)
 	    // It starts with 1 as the first argument in the array is the
 	    // command/program executed
 	    int index;
+		int indexArg;
 	    int indexArg1;
 	    char argLetter;
 	    // For all elements in list argv startin by 1:
